@@ -1,22 +1,11 @@
-import express from 'express';
-import cors from 'cors';
-import hash from 'sha1';
-import fs from 'fs';
+const express = require('express');
+const cors = require('cors');
+const hash = require('sha1');
+const fs = require('fs');
 
+//Get data
 var dataRaw = fs.readFileSync('./node/data.json', 'utf8');
 var data;
-
-function saveData() {
-    fs.writeFileSync('./node/data.json', JSON.stringify(data), 'utf8');
-};
-
-function getLowestCallsign() {
-    for (let i = 50; i <= 1000; i++) {
-        if (!(i in data.pilots) && !(i in data.pilotsRestricted)) {
-            return i;
-        };
-    };
-};
 
 if (dataRaw.length < 1) {
     data = {
@@ -32,7 +21,21 @@ if (dataRaw.length < 1) {
     data = JSON.parse(dataRaw);
 };
 
+//Helper functions
+function saveData() {
+    if (!fs.existsSync('./node/data.json')) fs.writeFile('./node/data.json', "", 'utf8');
+    fs.writeFileSync('./node/data.json', JSON.stringify(data), 'utf8');
+};
 
+function getLowestCallsign() {
+    for (let i = 50; i <= 1000; i++) {
+        if (!(i in data.pilots) && !(i in data.pilotsRestricted)) {
+            return i;
+        };
+    };
+};
+
+//Classes
 class Lesson {
     constructor(notes, type, student) {
         this.notes = notes;
@@ -88,8 +91,9 @@ class lessonTypes {
 
 saveData();
 
+//API
 const app = express();
-const port = 81;
+const port = 3000;
 
 app.use(cors());
 app.use(express.json());

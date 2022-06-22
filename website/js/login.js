@@ -8,7 +8,7 @@ async function validate() {
     };
     let data = {};
     data[user.value] = pass.value;
-    let response = await fetch("http://thcr.me:81/login", {
+    let response = await fetch("http://thcr.me:3000/login", {
         method: 'POST',
         mode: 'cors',
         headers: {
