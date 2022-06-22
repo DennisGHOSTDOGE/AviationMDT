@@ -21,12 +21,36 @@ function getCreds() {
   password = getCookie("password");
 };
 
-function checkLogin() {
-  
+async function checkLogin() {
+  let data = {};
+  data[callsign] = password;
+  let response = await fetch("http://localhost:3000/login", {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
+    data = await response.json();
+    return data.valid;
 };
 
 async function getDataRestricted() {
 
 };
 
-getData();
+var root = document.getElementById("root");
+var loggedIn;
+var password;
+var callsign;
+getCreds();
+async () => {
+  loggedIn = await checkLogin();
+}
+
+if (!loggedIn) {
+  root.innerHTML = "<a>You are not logged in!</a>";
+} else {
+  
+};
