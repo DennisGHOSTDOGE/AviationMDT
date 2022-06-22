@@ -50,7 +50,7 @@ async () => {
 }
 
 if (!loggedIn) {
-  root.innerHTML = "<a>You are not logged in!</a>";
+  root.innerHTML = '<a id="nologin">You are not logged in!</a>';
 } else {
   
 };
