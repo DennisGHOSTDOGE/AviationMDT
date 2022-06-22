@@ -205,6 +205,7 @@ app.post('/login', (req, res) => {
     let callsign = Object.keys(req.body)[0];
     let password = hash(Object.values(req.body)[0]);
     let data = JSON.parse(fs.readFileSync('./node/data.json', 'utf8'));
+    console.log("Login requested.")
     if (callsign in data.pilots) {
         if (data.pilots[callsign].password == password) {
             res.send(JSON.stringify({valid: true}));

@@ -3,20 +3,20 @@ var pass = document.getElementById("password");
 
 //Function to retrieve cookies
 function getCookie(cname) {
-    let name = cname + "=";
-    let decodedCookie = decodeURIComponent(document.cookie);
-    let ca = decodedCookie.split(';');
-    for(let i = 0; i <ca.length; i++) {
-      let c = ca[i];
-      while (c.charAt(0) == ' ') {
-        c = c.substring(1);
-      };
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      };
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
     };
-    return "";
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    };
   };
+  return "";
+};
   
   //Updates credentials (if they exist)
   function getCreds() {
@@ -46,7 +46,7 @@ async function validate() {
     };
     let data = {};
     data[user.value] = pass.value;
-    let response = await fetch("http://thcr.me:3000/login", {
+    let response = await fetch("http://localhost:3000/login", {
         method: 'POST',
         mode: 'cors',
         headers: {
@@ -67,6 +67,12 @@ async function validate() {
 
 var callsign;
 var password;
-
+var loggedIn;
 getCreds();
-if (checkLogin()) window.location.href = "./index.html";
+async () => {
+  loggedIn =  await checkLogin();
+};
+
+console.log(loggedIn);
+
+if (loggedIn) window.location.href = "./index.html";
