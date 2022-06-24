@@ -24,7 +24,7 @@ function getCreds() {
 async function checkLogin() {
   let data = {};
   data[callsign] = password;
-  let response = await fetch("http://localhost:3000/login", {
+  let response = await fetch("http://thcr.me:3000/login", {
         method: 'POST',
         mode: 'cors',
         headers: {
