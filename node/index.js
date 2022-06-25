@@ -121,8 +121,11 @@ app.post('/addPilot', (req, res) => {
         return;
     };
     let callsignAuth = req.query.callsign;
-    let password = req.query.password;
-    if (!data.pilots[callsignAuth].password == password || !data.pilots[callsignAuth].certs[5]) return;
+    let password = hash(req.query.password);
+    if (!data.pilots[callsignAuth].password == password || !data.pilots[callsignAuth].certs.cfi) {
+        res.send("Invalid perms");
+        return;
+    };
     let callsign = getLowestCallsign();
     data.pilots[callsign] = new Pilot(req.query.name, 0, 0, new Certs(false, false, false, false, false, false), [], null, hash("ILoveAviation"));
     res.send('done');
@@ -130,13 +133,17 @@ app.post('/addPilot', (req, res) => {
 });
 
 app.post('/addPilotRestricted', (req, res) => {
+    console.log(req.query.password)
     if (req.query.name.length < 1) {
         res.send("Please enter a name!");
         return;
     };
     let callsignAuth = req.query.callsign;
-    let password = req.query.password;
-    if (!data.pilots[callsignAuth].password == password || !data.pilots[callsignAuth].certs[5]) return;
+    let password = hash(req.query.password);
+    if (!data.pilots[callsignAuth].password == password || !data.pilots[callsignAuth].certs.cfi) {
+        res.send("Invalid perms");
+        return;
+    };
     let callsign = getLowestCallsign();
     data.pilotsRestricted[callsign] = new Pilot(req.query.name, 0, 0, new Certs(false, false, false, false, false, false), [], null, hash("ILoveAviation"));
     res.send('done');
