@@ -109,7 +109,7 @@ app.get('/getData', (req, res) => {
 app.get('/getDataRestricted', (req, res) => {
     let callsignAuth = req.query.callsign;
     let password = req.query.password;
-    if (!data.pilots[callsignAuth].password == password || !data.pilots[callsignAuth].certs[5]) return;
+    if (!data.pilots[callsignAuth].password == password || !data.pilots[callsignAuth].certs.cfi) return;
     let pilots = data.pilots;
     pilots = {...data.pilots, ...data.pilotsRestricted};
     res.send(pilots);
@@ -164,7 +164,7 @@ app.post('/addPilotRestricted', (req, res) => {
 app.post('/addPilotManual', (req, res) => {
     let callsignAuth = req.query.callsign;
     let password = req.query.password;
-    if (!data.pilots[callsignAuth].password == password || !data.pilots[callsignAuth].certs[5]) return;
+    if (!data.pilots[callsignAuth].password == password || !data.pilots[callsignAuth].certs.cfi) return;
     if (req.query.restricted == "true") {
         data.pilotsRestricted[req.query.callsign] = new Pilot(req.query.name, 0, 0, new Certs(false, false, false, false, false, false), [], null, hash("ILoveAviation"));
     } else {
@@ -178,7 +178,7 @@ app.post('/addPilotManual', (req, res) => {
 app.post('/changeLicense', (req,res) => {
     let callsignAuth = req.query.callsign;
     let password = req.query.password;
-    if (!data.pilots[callsignAuth].password == password || !data.pilots[callsignAuth].certs[5]) return;
+    if (!data.pilots[callsignAuth].password == password || !data.pilots[callsignAuth].certs.cfi) return;
     if (req.query.callsign in data.pilotsRestricted) {
         data.pilotsRestricted[req.query.callsign].certs[req.query.cert] = !(data.pilotsRestricted[req.query.callsign].certs[req.query.cert]);
     } else {
@@ -191,7 +191,7 @@ app.post('/changeLicense', (req,res) => {
 app.post('/setOverride', (req,res) => {
     let callsignAuth = req.query.callsign;
     let password = req.query.password;
-    if (!data.pilots[callsignAuth].password == password || !data.pilots[callsignAuth].certs[5]) return;
+    if (!data.pilots[callsignAuth].password == password || !data.pilots[callsignAuth].certs.cfi) return;
     if (req.query.callsign in data.pilots) {
         data.pilots[req.query.callsign].override = req.query.override;
     } else {
@@ -204,7 +204,7 @@ app.post('/setOverride', (req,res) => {
 app.post('/addLesson', (req, res) => {
     let callsignAuth = req.query.callsign;
     let password = req.query.password;
-    if (!data.pilots[callsignAuth].password == password || !data.pilots[callsignAuth].certs[5]) return;
+    if (!data.pilots[callsignAuth].password == password || !data.pilots[callsignAuth].certs.cfi) return;
     let cfi = req.query.cfi;
     let student = req.query.student;
     let notes = req.query.notes;
