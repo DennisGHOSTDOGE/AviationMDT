@@ -69,9 +69,7 @@ var callsign;
 var password;
 var loggedIn;
 getCreds();
-async () => {
-  loggedIn =  await checkLogin();
-};
+loggedIn =  await checkLogin();
 
 console.log(loggedIn);
 

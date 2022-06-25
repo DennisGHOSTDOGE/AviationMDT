@@ -47,9 +47,7 @@ var loggedIn;
 var password;
 var callsign;
 getCreds();
-async () => {
-  loggedIn = await checkLogin();
-}
+loggedIn = checkLogin();
 
 if (!loggedIn) {
   root.innerHTML = '<a id="nologin">You are not logged in!</a>';
