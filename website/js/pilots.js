@@ -19,9 +19,11 @@ function getCookie(cname) {
 function getCreds() {
   callsign = getCookie("callsign");
   password = getCookie("password");
+  console.log(callsign, password)
 };
 
 async function checkLogin() {
+  console.log("Checking login");
   let data = {};
   data[callsign] = password;
   let response = await fetch("http://thcr.me:3000/login", {
