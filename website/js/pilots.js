@@ -1,3 +1,6 @@
+const url = "thcr.me";
+const port = "3000";
+
 //Function to retrieve cookies
 function getCookie(cname) {
   let name = cname + "=";
@@ -26,7 +29,7 @@ async function checkLogin() {
   console.log("Checking login");
   let data = {};
   data[callsign] = password;
-  let response = await fetch("http://thcr.me:3000/login", {
+  let response = await fetch("http://" + url + ":" + port + "/login", {
         method: 'POST',
         mode: 'cors',
         headers: {
@@ -38,8 +41,22 @@ async function checkLogin() {
     return data.valid;
 };
 
-async function getDataRestricted() {
+async function getData(pass, call) {
+  let response = await fetch("http://" + url + ":" + port + "/getData?password=" + pass + "&callsign=" + call, {
+    method: 'GET',
+    mode: 'cors',
+  });
+  let data = await response.json();
+  return data;
+};
 
+async function getDataRestricted(pass, call) {
+  let response = await fetch("http://" + url + ":" + port + "/getDataRestricted?password=" + pass + "&callsign=" + call, {
+    method: 'GET',
+    mode: 'cors',
+  });
+  let data = await response.json();
+  return data;
 };
 
 var root = document.getElementById("root");
@@ -52,5 +69,6 @@ loggedIn = checkLogin();
 if (!loggedIn) {
   root.innerHTML = '<a id="nologin">You are not logged in!</a>';
 } else {
-  
+  var data = getData(password, callsign);
+  if (data[callsign].certs[5]) data = getDataRestricted(password, callsign);
 };

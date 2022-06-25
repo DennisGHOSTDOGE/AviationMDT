@@ -69,7 +69,7 @@ var callsign;
 var password;
 var loggedIn;
 getCreds();
-loggedIn =  await checkLogin();
+loggedIn =  checkLogin();
 
 console.log(loggedIn);
 

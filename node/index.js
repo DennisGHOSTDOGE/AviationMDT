@@ -124,7 +124,7 @@ app.post('/addPilot', (req, res) => {
     let password = req.query.password;
     if (!data.pilots[callsignAuth].password == password || !data.pilots[callsignAuth].certs[5]) return;
     let callsign = getLowestCallsign();
-    data.pilots[callsign] = new Pilot(req.query.name, 0, 0, new Certs(false, false, false, false, false, false), [], null);
+    data.pilots[callsign] = new Pilot(req.query.name, 0, 0, new Certs(false, false, false, false, false, false), [], null, hash("ILoveAviation"));
     res.send('done');
     saveData();
 });
@@ -138,7 +138,7 @@ app.post('/addPilotRestricted', (req, res) => {
     let password = req.query.password;
     if (!data.pilots[callsignAuth].password == password || !data.pilots[callsignAuth].certs[5]) return;
     let callsign = getLowestCallsign();
-    data.pilotsRestricted[callsign] = new Pilot(req.query.name, 0, 0, new Certs(false, false, false, false, false, false), [], null);
+    data.pilotsRestricted[callsign] = new Pilot(req.query.name, 0, 0, new Certs(false, false, false, false, false, false), [], null, hash("ILoveAviation"));
     res.send('done');
     saveData();
 });
@@ -148,9 +148,9 @@ app.post('/addPilotManual', (req, res) => {
     let password = req.query.password;
     if (!data.pilots[callsignAuth].password == password || !data.pilots[callsignAuth].certs[5]) return;
     if (req.query.restricted == "true") {
-        data.pilotsRestricted[req.query.callsign] = new Pilot(req.query.name, 0, 0, new Certs(false, false, false, false, false, false), [], null);
+        data.pilotsRestricted[req.query.callsign] = new Pilot(req.query.name, 0, 0, new Certs(false, false, false, false, false, false), [], null, hash("ILoveAviation"));
     } else {
-        data.pilots[req.query.callsign] = new Pilot(req.query.name, 0, 0, new Certs(false, false, false, false, false, false), [], null);
+        data.pilots[req.query.callsign] = new Pilot(req.query.name, 0, 0, new Certs(false, false, false, false, false, false), [], null, hash("ILoveAviation"));
     }
     
     res.send('done');
