@@ -1,1 +1,38 @@
-{"pilots":{"22":{"name":"Paul Schmidt","planeLessons":0,"heliLessons":0,"certs":{"heli":false,"heavyheli":false,"plane":false,"heavyplane":false,"perfplane":false,"cfi":true},"lessons":[],"override":"F","password":"7c222fb2927d828af22f592134e8932480637c0d"}},"pilotsRestricted":{"50":{"name":"Ruby June Lawson","planeLessons":0,"heliLessons":0,"certs":{"heli":false,"heavyheli":false,"plane":false,"heavyplane":false,"perfplane":false,"cfi":false},"lessons":[],"override":null,"password":"162c0ddccbad86615babb6f7d921c548cf06a7f3"}}}
+{
+    "pilots": {
+        "22": {
+            "name": "Paul Schmidt",
+            "planeLessons": 0,
+            "heliLessons": 0,
+            "certs": {
+                "heli": false,
+                "heavyheli": false,
+                "plane": false,
+                "heavyplane": false,
+                "perfplane": false,
+                "cfi": true
+            },
+            "lessons": [],
+            "override": "F",
+            "password": "7c222fb2927d828af22f592134e8932480637c0d"
+        }
+    },
+    "pilotsRestricted": {
+        "50": {
+            "name": "Ruby June Lawson",
+            "planeLessons": 0,
+            "heliLessons": 0,
+            "certs": {
+                "heli": false,
+                "heavyheli": false,
+                "plane": false,
+                "heavyplane": false,
+                "perfplane": false,
+                "cfi": false
+            },
+            "lessons": [],
+            "override": null,
+            "password": "162c0ddccbad86615babb6f7d921c548cf06a7f3"
+        }
+    }
+}

@@ -111,7 +111,7 @@ app.get('/getDataRestricted', (req, res) => {
     let password = req.query.password;
     if (!data.pilots[callsignAuth].password == password || !data.pilots[callsignAuth].certs.cfi) return;
     let pilots = data.pilots;
-    pilots = {...data.pilots, ...data.pilotsRestricted};
+    pilots = { ...data.pilots, ...data.pilotsRestricted };
     res.send(pilots);
 });
 
@@ -154,7 +154,7 @@ app.post('/addPilotRestricted', (req, res) => {
         res.send("Invalid login!");
         return;
     }
-    
+
     let callsign = getLowestCallsign();
     data.pilotsRestricted[callsign] = new Pilot(req.query.name, 0, 0, new Certs(false, false, false, false, false, false), [], null, hash("ILoveAviation"));
     res.send('done');
@@ -170,12 +170,12 @@ app.post('/addPilotManual', (req, res) => {
     } else {
         data.pilots[req.query.callsign] = new Pilot(req.query.name, 0, 0, new Certs(false, false, false, false, false, false), [], null, hash("ILoveAviation"));
     }
-    
+
     res.send('done');
     saveData();
 });
 
-app.post('/changeLicense', (req,res) => {
+app.post('/changeLicense', (req, res) => {
     let callsignAuth = req.query.callsign;
     let password = req.query.password;
     if (!data.pilots[callsignAuth].password == password || !data.pilots[callsignAuth].certs.cfi) return;
@@ -188,7 +188,7 @@ app.post('/changeLicense', (req,res) => {
     res.send("done");
 });
 
-app.post('/setOverride', (req,res) => {
+app.post('/setOverride', (req, res) => {
     let callsignAuth = req.query.callsign;
     let password = req.query.password;
     if (!data.pilots[callsignAuth].password == password || !data.pilots[callsignAuth].certs.cfi) return;
@@ -226,20 +226,20 @@ app.post('/login', (req, res) => {
     console.log("Login requested.")
     if (callsign in data.pilots) {
         if (data.pilots[callsign].password == password) {
-            res.send(JSON.stringify({valid: true}));
+            res.send(JSON.stringify({ valid: true }));
         } else {
-            res.send(JSON.stringify({valid: false}));
+            res.send(JSON.stringify({ valid: false }));
         }
     } else if (callsign in data.pilotsRestricted) {
         if (data.pilotsRestricted[callsign].password == password) {
-            res.send(JSON.stringify({valid: true}));
+            res.send(JSON.stringify({ valid: true }));
         } else {
-            res.send(JSON.stringify({valid: false}));
+            res.send(JSON.stringify({ valid: false }));
         }
     } else {
-        res.send(JSON.stringify({valid: false}));
+        res.send(JSON.stringify({ valid: false }));
     }
-    
+
 })
 
 app.listen(port, () => {

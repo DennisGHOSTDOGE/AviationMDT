@@ -7,7 +7,11 @@
     background-color: #24252a;
 }
 
-li, a, button, label, input {
+li,
+a,
+button,
+label,
+input {
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
     font-size: 16px;
@@ -43,9 +47,10 @@ header {
     color: #0088a9;
 }
 
-button, #submit{
+button,
+#submit {
     padding: 9px 25px;
-    background-color: rgba(0,136,169,1);
+    background-color: rgba(0, 136, 169, 1);
     border: none;
     border-radius: 50px;
     cursor: pointer;
@@ -53,7 +58,7 @@ button, #submit{
 }
 
 button:hover {
-    background-color: rgba(0,136,169,0.8);
+    background-color: rgba(0, 136, 169, 0.8);
 }
 
 .current {
@@ -67,6 +72,7 @@ form {
     margin: 10px;
     flex-wrap: wrap;
 }
+
 input {
     margin: 10px;
     border: none;
