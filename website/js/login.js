@@ -55,8 +55,8 @@ async function validate() {
     body: JSON.stringify(data)
   });
   data = await response.json();
-  if (data.valid == true) {
-    document.cookie = `callsign=${user.value};`;
+  if (data.valid) {
+    document.cookie = `callsign=${user.value};`
     document.cookie = ` password=${pass.value}`;
     alert(`You are now logged in as pilot ${user.value}`);
     window.location.href = "./index.html";
